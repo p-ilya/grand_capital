@@ -5,6 +5,15 @@
   </head>
 
   <body>
-    {% draw_menu 'main_menu' %}
+    <div style='display: inline-block;'>
+      <div class="menu">
+    	{% draw_menu 'main_menu' %}
+      </div>
+
+      <div class="content">
+	    {% block page_content %}
+	    {% endblock %}
+	  </div>
+    </div>
   </body>
 </html>

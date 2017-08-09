@@ -1,5 +1,10 @@
 <ul>
-{% for menu_node in nodes %}
-  <li>{{ menu_node }}</li>
+{% for node in menu %}
+  <li {% if request.path == node.slug %}class='active'{% endif %}>
+    <a href={% url 'some_page' slug=node.slug %}>{{ node.name }}</a>
+    {% if node.children %}
+      {% include 'menu/menu.html' with menu=node.children %}
+    {% endif %}
+  </li>
 {% endfor %}
 </ul>
