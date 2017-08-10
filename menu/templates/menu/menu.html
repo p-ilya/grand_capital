@@ -1,10 +1,16 @@
 <ul>
 {% for node in nodes %}
-  <li {% if request.path == node.slug %}class='active'{% endif %}>
+  
+  {% if node.level <= max_level %}
+  <li {% if active.id == node.id %}class='active'{% endif %}>
     <a href={% url 'some_page' slug=node.slug %}>{{ node.name }}</a>
-    {% if node.children %}
+    
+    {% if active in node.children or node == active or active.parent in node.children %}
       {% include 'menu/menu.html' with nodes=node.children %}
     {% endif %}
+
   </li>
+  {% endif %}
+
 {% endfor %}
 </ul>
