@@ -5,7 +5,8 @@ from .models import MenuNode
 
 
 def index(request):
-    return render(request, 'menu/index.html', {})
+    page = get_object_or_404(MenuNode, slug='glavnaya')
+    return render(request, 'menu/index.html', {'page': page})
 
 
 def some_page(request, slug):
