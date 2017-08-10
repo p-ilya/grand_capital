@@ -1,9 +1,9 @@
 <ul>
-{% for node in menu %}
+{% for node in nodes %}
   <li {% if request.path == node.slug %}class='active'{% endif %}>
     <a href={% url 'some_page' slug=node.slug %}>{{ node.name }}</a>
     {% if node.children %}
-      {% include 'menu/menu.html' with menu=node.children %}
+      {% include 'menu/menu.html' with nodes=node.children %}
     {% endif %}
   </li>
 {% endfor %}

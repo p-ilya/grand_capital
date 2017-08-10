@@ -19,3 +19,8 @@ class MenuNode(models.Model):
         else:
             self.level = 0
         super(MenuNode, self).save(*args, **kwargs)
+
+    def find_child_nodes(self):
+        return MenuNode.objects.filter(parent=self.id)
+
+    children = property(find_child_nodes)
